@@ -5,13 +5,37 @@
 const path = require('path')
 const publicPath = require('./publicPath').path
 
+const envDevTarget= 'http://172.17.1.175',
+      envDevTarget1= 'http://www.01home.com',
+      envTestTarget= 'http://m1.wx.01home.com',
+      envPreTarget= 'http://m1.wx.01home.com',
+      envProTarget= 'http://m1.wx.01home.com'
+
+const envTarget= envDevTarget
+
 module.exports = {
   dev: {
 
-    // Paths
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
-    proxyTable: {},
+    proxyTable: {
+    	'/login2':{
+    		target:envTarget,
+    		changeOrigin:true
+    	},
+    	'/wx':{
+    		target:envTarget,
+    		changeOrigin:true
+    	},
+			'/sendSms': {
+				target: envDevTarget,
+				changeOrigin:true
+			},
+			'/zhanTuan': {
+					target: envDevTarget,
+				  changeOrigin:true
+			}
+    },
 
     // Various Dev Server settings
     host: 'localhost', // can be overwritten by process.env.HOST

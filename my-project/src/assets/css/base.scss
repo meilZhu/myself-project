@@ -1,0 +1,30 @@
+html,body,div,p,h1,h2,h3,h4,h5,h6,a,i,b,strong,span,img,input,button,form,ul,li,ol,dl,dt,dd,legend,em {
+    padding:0;
+    margin:0;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    font-family: 'Avenir', Helvetica, Arial, sans-serif;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+}
+.body {
+    max-width:7.5rem;
+    margin: 0 auto;
+}
+h1,h2,h3,h4,h5,h6 {
+    font-size:100%;
+    font-weight:normal;
+}
+input,button {
+    border:none;
+    outline:none;
+}
+ul,li {
+    list-style: none;
+}
+a {
+    text-decoration:none;
+    color:#000000
+}

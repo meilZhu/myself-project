@@ -26,13 +26,13 @@ const webpackConfig = merge(baseWebpackConfig, {
     path: config.buildTest.assetsRoot,
     publicPath: config.buildTest.assetsPublicPath,
     filename: utils.assetsPath('js/[name].[chunkhash].js'),
-    chunkFilename: utils.assetsPath('js/[id].[chunkhash].js')
+    chunkFilename: utils.assetsPath('js/[name].[chunkhash].js')
   },
   plugins: [
     // http://vuejs.github.io/vue-loader/en/workflow/production.html
     new webpack.DefinePlugin({
       'process.env': env,
-      Version:JSON.stringify(process.agrv[2])
+      Version:JSON.stringify(process.argv[2])
     }),
     new UglifyJsPlugin({
       uglifyOptions: {
