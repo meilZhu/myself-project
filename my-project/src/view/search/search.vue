@@ -1,11 +1,12 @@
 <template>
 	<div class="search">
-		<basesearch>
+		<basesearch :isJump='isJump' :closeDialog='closeDialog' :showDialog='showDialog'>
 		    <i class="iconfont icon-xiangzuo7 go-back" slot='left-operate' @click='goback()'></i>
 		    <span slot='right-operate' class='other' @click='goback()'>取消</span>
 		</basesearch>
-		<basesearchhistory :searchTitle='searchHistoryTitle' :isShowRemove='isShowHistoryRemove' :searchContent='historyContent' v-if='isHistorySearch' :closeDialog='closeDialog' :showDialog='showDialog' :type='closeType'></basesearchhistory>
-		<basesearchhistory :searchTitle='searchHotTitle' :isShowRemove='isShowHotRemove' :searchContent='hotContent'></basesearchhistory>
+		<basesearchhistory v-if='isHistorySearch' :searchTitle='searchHistoryTitle' :isShowRemove='isShowHistoryRemove' :searchContent='historyContent' :closeDialog='closeDialog' :showDialog='showDialog' :type='closeType'></basesearchhistory>
+		<basesearchhistory v-if='isHotSearch' :searchTitle='searchHotTitle' :isShowRemove='isShowHotRemove' :searchContent='hotContent'></basesearchhistory>
+	    <baserelatedsearch v-if='isRelatedSearch'></baserelatedsearch>
 	</div>
 </template>
 
@@ -14,7 +15,10 @@
 		name: 'search',
 		data() {
 			return {
+				isJump:false,
 				isHistorySearch:true,
+				isHotSearch:true,
+				isRelatedSearch:false,
 				searchHistoryTitle:'最近搜索',
 				isShowHistoryRemove: true,
 				closeType:'historySearch',
@@ -28,19 +32,34 @@
 			goback() {
 				window.history.go(-1)
 			},
-			closeDialog(hideType,showType) {
+			closeDialog(hideType,...showType) {
 				switch(hideType) {
 					case 'historySearch':
 					    this.isHistorySearch= false
 					    break;
+					case 'hotSearch':
+					    this.isHotSearch= false
+					    break;
+					case 'relatedSearch':
+					    this.isRelatedSearch= false
+					    break;
 					default:
 				}
-				this.showDialog(showType)
+				showType.map(t=> {
+					this.showDialog(t)
+				})
+				
 			},
 			showDialog(showType) {
 				switch(showType) {
 					case 'historySearch':
 					    this.isHistorySearch= true
+					    break;
+					case 'hotSearch':
+					    this.isHotSearch= true
+					    break;
+					case 'relatedSearch':
+					    this.isRelatedSearch= true
 					    break;
 					default:
 				}

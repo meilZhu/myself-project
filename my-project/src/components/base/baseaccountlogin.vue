@@ -1,38 +1,40 @@
 <template>
 	<div class="login-box">
-		<div class="mobile-box">
-			<i class="iconfont icon-bangdingshouji i-mobile"></i>
-			<input type="text" @blur='blurMobile()' v-model='mobile' class="mobile" placeholder="请输入手机号码"/>
-			<p class="error-mobile" v-if='isMobileError'>{{errorMobile}}</p>
+		<div class="content">
+			<div class="mobile-box">
+				<i class="iconfont icon-bangdingshouji i-mobile"></i>
+				<input type="text" @blur='blurMobile()' v-model='mobile' class="mobile" placeholder="请输入手机号码"/>
+				<p class="error-mobile" v-if='isMobileError'>{{errorMobile}}</p>
+			</div>
+			<div class="code-box">
+				<i class="iconfont icon-3denglumima i-code"></i>
+				<input type="password" @blur='blurCode()' v-model='code' class="code" placeholder="输入密码"/>
+				<p class="error-code" v-if='isCodeError'>{{errorCode}}</p>
+			</div>
+			<button :class="canLogin ? 'login': 'isLogin' " @click='login()'>登录</button>
+			<p class='tips'><span class="change" @click='changeFast()'>快速登录</span><span class="register" @click='register()'>注册账号</span></p>
 		</div>
-		<div class="code-box">
-			<i class="iconfont icon-3denglumima i-code"></i>
-			<input type="password" @blur='blurCode()' v-model='code' class="code" placeholder="输入密码"/>
-			<p class="error-code" v-if='isCodeError'>{{errorCode}}</p>
-		</div>
-		<button :class="canLogin ? 'login': 'isLogin' " @click='login()'>登录</button>
-		<p class='tips'><span class="change" @click='changeFast()'>快速登录</span><span class="register" @click='register()'>注册账号</span></p>
 	</div>
 </template>
 
 <script>
 	import appObj from '../../utils/publicPath'
 	export default {
-		name:'passLogin',
+		name: 'passLogin',
 		data () {
 			return {
-				mobile:'',
-				isMobileError:false,
-				errorMobile:'',
-				code:'',
-				isCodeError:false,
-				errorCode:'',
-				canLogin:false,
+				mobile: '',
+				isMobileError: false,
+				errorMobile: '',
+				code: '',
+				isCodeError: false,
+				errorCode: '',
+				canLogin: false
 			}
 		},
-		props:['closeDialog', 'showDialog', 'accountLogin'],
+		props: ['closeDialog', 'showDialog', 'accountLogin'],
 		methods: {
-			blurMobile() {
+			blurMobile () {
 				let reg= /^(13[0-9]|14[579]|15[0-3,5-9]|166|17[0135678]|18[0-9]|19[89])\d{8}$/
 				let regPas= /^[a-zA-Z][0-9a-zA-Z_]*$/
 				if (reg.test(this.mobile)) {
@@ -41,7 +43,7 @@
 					if (this.code && regPas.test(this.code)) {
 						this.canLogin= true
 					}
-				}else if (!this.mobile) {
+				} else if (!this.mobile) {
 					this.errorMobile= '请输入手机号码'
 					this.isMobileError= true
 					this.canLogin= false
@@ -51,18 +53,18 @@
 					this.canLogin= false
 				}
 			},
-			blurCode() {
-				let reg= /^(13[0-9]|14[579]|15[0-3,5-9]|166|17[0135678]|18[0-9]|19[89])\d{8}$/;
+			blurCode () {
+				let reg= /^(13[0-9]|14[579]|15[0-3,5-9]|166|17[0135678]|18[0-9]|19[89])\d{8}$/
 				let regPas= /^[a-zA-Z][0-9a-zA-Z_]*$/
-				if(!this.code) {
+				if (!this.code) {
 					this.errorCode= '请输入密码'
 					this.isCodeError= true
 					this.canLogin= false
-				}else if(!regPas.test(this.code)) {
+				} else if (!regPas.test(this.code)) {
 					this.errorCode= '格式错误（字母开头，只包含字母、数字、下划线）'
 					this.isCodeError= true
 					this.canLogin= false
-				}else {
+				} else {
 					this.errorCode= ''
 					this.isCodeError= false
 					if (reg.test(this.mobile)) {
@@ -70,19 +72,21 @@
 					}
 				} 
 			},
-			login() {
-				//调取登录接口
-				let userInfo= {
-					mobile:this.mobile,
-					password:this.code
+			login () {
+				if (this.canLogin) {
+					// 调取登录接口
+					let userInfo= {
+						mobile: this.mobile,
+						password: this.code
+					}
+					this.accountLogin(userInfo)
 				}
-				this.accountLogin(userInfo)
 			},
-			changeFast() {
+			changeFast () {
 				this.closeDialog('accountLogin','fastLogin')
 			},
-			register() {
-				this.$router.push({path:`${appObj.path}register`})
+			register () {
+				this.$router.push({path: `${appObj.path}register`})
 			}
 		}
 	}
@@ -92,107 +96,108 @@
     .login-box {
     	font-size:0;
     	width:100%;
-    	height:5rem;
-    	padding-top:.3rem;
+    	height:6.666667rem;
+    	padding-top:.4rem;
     	background:rgba(255,66,37,0);
-    	.mobile-box {
-    		font-size:0;
-    		position:relative;
-    		margin-bottom:.6rem;
-    		.mobile {
-	    		width:6rem;
-	    		height:.8rem;
-	    		margin-left:.75rem;
-	    		box-shadow: 0 .01rem 0 #666666;
-	    		padding-left:.8rem;
-	    		letter-spacing: .02rem;
-	    	}
-	    	.i-mobile {
-	    		width:.6rem;
-	    		height:.6rem;
-	    		text-align: center;
-	    		line-height: .6rem;
-	    		font-size:.5rem;
-	    		position:absolute;
-	    		bottom:.1rem;
-	    		left:.85rem;
-	    	}
-	    	.error-mobile {
-	    		width:6rem;
-	    		margin-left:.75rem;
-	    		color:#FF0000;
-	    		font-size:.2rem;
-	    		position:absolute;
-	    		left:0;
-	    		top:.85rem;
-	    		overflow: hidden;
-	    		white-space: nowrap;
-	    		text-overflow: ellipsis;
-	    	}
-    	}
-    	.code-box {
-    		font-size:0;
-    		position:relative;
-    		margin-bottom:.6rem;
-    		.code {
-    			width:6rem;
-    			height:.8rem;
-    			margin-left:.75rem;
-    			padding-left:.8rem;
-    			box-shadow: 0 .01rem 0 #666666;
-    		}
-    		.i-code {
-    			width:.6rem;
-	    		height:.6rem;
-	    		text-align: center;
-	    		line-height: .6rem;
-	    		font-size:.5rem;
-	    		position:absolute;
-	    		bottom:.1rem;
-	    		left:.85rem;
-    		}
-    		.error-code {
-    			width:6rem;
-	    		margin-left:.75rem;
-	    		color:#FF0000;
-	    		font-size:.2rem;
-	    		position:absolute;
-	    		left:0;
-	    		top:.85rem;
-	    		overflow: hidden;
-	    		white-space: nowrap;
-	    		text-overflow: ellipsis;
-    		}
-    	}
-    	.isLogin {
-    		width:6rem;
-    		height:.8rem;
-    		margin-left:.75rem;
-    		border-radius:.05rem;
-    		font-size:.36rem;
-    		background:#CCCCCC;
-    		color:#333333;
-    	}
-    	.login {
-    		width:6rem;
-    		height:.8rem;
-    		margin-left:.75rem;
-    		border-radius:.05rem;
-    		font-size:.36rem;
-    		color:#fff;
-    		background:-webkit-linear-gradient(left,#f00,#f0f)
-    	}
-    	.tips {
-    		width:6rem;
-    		margin-left:.75rem;
-    		display: flex;
-    		font-size:.3rem;
-    		margin-top:.3rem;
-    		justify-content: space-between;
-    		color:#333333;
-    		&>span {
-    			height:.5rem;
-    		}
-    	}
+		display:flex;
+		justify-content: center;
+		.content {
+			width:8rem;
+			.mobile-box {
+				font-size:0;
+				position:relative;
+				margin-bottom:.8rem;
+				.mobile {
+					width:8rem;
+					height:1.066667rem;
+					font-size:14px;
+					box-shadow: 0 .01rem 0 #666666;
+					padding-left:1.066667rem;
+					letter-spacing: .026667rem;
+				}
+				.i-mobile {
+					width:1.066667rem;
+					height:1.066667rem;
+					text-align: center;
+					line-height:1.066667rem;
+					font-size:20px;
+					position:absolute;
+					bottom:0;
+					left:0
+				}
+				.error-mobile {
+					width:8rem;
+					color:#FF0000;
+					font-size:12px;
+					position:absolute;
+					left:0;
+					top:1.133333rem;
+					overflow: hidden;
+					white-space: nowrap;
+					text-overflow: ellipsis;
+				}
+			}
+			.code-box {
+				font-size:0;
+				position:relative;
+				margin-bottom:.8rem;
+				.code {
+					width:8rem;
+					height:1.066667rem;
+					font-size:14px;
+					padding-left:1.066667rem;
+					box-shadow: 0 .01rem 0 #666666;
+				}
+				.i-code {
+					width:1.066667rem;
+					height:1.066667rem;
+					text-align: center;
+					line-height:1.066667rem;
+					font-size:20px;
+					position:absolute;
+					bottom:0;
+					left:0
+				}
+				.error-code {
+					width:8rem;
+					color:#FF0000;
+					font-size:12px;
+					position:absolute;
+					left:0;
+					top:1.133333rem;
+					overflow: hidden;
+					white-space: nowrap;
+					text-overflow: ellipsis;
+				}
+			}
+			.isLogin {
+				width:8rem;
+				height:1.066667rem;
+				border-radius:5px;
+				font-size:18px;
+				background:#CCCCCC;
+				color:#333333;
+			}
+			.login {
+				width:8rem;
+				height:1.066667rem;
+				border-radius:5px;
+				font-size:18px;
+				color:#fff;
+				background:-webkit-linear-gradient(left,#f00,#f0f)
+			}
+			.tips {
+				width:8rem;
+				display: flex;
+				font-size:14px;
+				margin-top:.4rem;
+				justify-content: space-between;
+				color:#333333;
+				&>span {
+					height:.666667rem
+				}
+			}
+		}
+    	
     }
 </style>

@@ -11,6 +11,7 @@
 </template>
 
 <script>
+	import appObj from '../../utils/publicPath'
 	export default {
 		name: 'searchhistory',
 		data () {
@@ -18,15 +19,16 @@
 				
 			}
 		},
-		props:['searchTitle', 'isShowRemove','searchContent','closeDialog','showDialog','type'],
+		props: ['searchTitle', 'isShowRemove','searchContent','closeDialog','showDialog','type'],
 		methods: {
-			removeSearch() {
-				//需要请调取接口
+			removeSearch () {
+				// 需要请调取接口
 				this.closeDialog(this.type)
 			},
-			search(ele) {
+			search (ele) {
 				console.log(ele)
-				//这里再次调取搜索接口
+				// 这里再次调取搜索接口
+				this.$router.push({path: `${appObj.path}searchResult`})
 			}
 		}
 	}
@@ -35,15 +37,15 @@
 <style lang='scss' scoped>
     .search-history {
     	width:100%;
-    	padding:.2rem .2rem 0.4rem;
+    	padding:.266667rem .266667rem .533333rem;
     	.search-box {
     		width:100%;
-    		height:.45rem;
+    		height:.6rem;
     		display: flex;
     		justify-content: space-between;
-    		line-height:.45rem;
-    		font-size:.3rem;
-    		margin-bottom:.1rem;
+    		line-height:.6rem;
+    		font-size:14px;
+    		margin-bottom:.133333rem;
     		.title {
     			font-weight: bold;
     		}
@@ -56,11 +58,11 @@
     		flex-wrap: wrap;
     		.search-content {
     			display: inline-block;
-    			padding:.08rem .2rem;
-    			font-size:.24rem;
+    			padding:.106667rem .266667rem;
+    			font-size:12px;
     			background:#ddd;
-    			margin-right:.2rem;
-    			margin-bottom:.2rem;
+    			margin-right:.266667rem;
+    			margin-bottom:.266667rem;
     			border-radius:3px;
     			color:#444
     		}

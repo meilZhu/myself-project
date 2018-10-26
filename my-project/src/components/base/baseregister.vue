@@ -1,17 +1,20 @@
 <template>
 	<div class="register-box">
-		<div class="mobile-box">
-			<i class="iconfont icon-bangdingshouji i-mobile"></i>
-			<input type="text" @blur='blurMobile()' v-model='mobile' class="mobile" placeholder="请输入手机号码"/>
-			<p class="error-mobile" v-if='isMobileError'>{{errorMobile}}</p>
+		<div class="content">
+			<div class="mobile-box">
+				<i class="iconfont icon-bangdingshouji i-mobile"></i>
+				<input type="text" @blur='blurMobile()' v-model='mobile' class="mobile" placeholder="请输入手机号码"/>
+				<p class="error-mobile" v-if='isMobileError'>{{errorMobile}}</p>
+			</div>
+			<div class='code-box'>
+				<i class="iconfont icon-3denglumima i-code"></i>
+				<input type="text" v-model='code' class="code" @blur='blurCode()' placeholder="请输入验证码"/><button class='get-code' @click='getCode()'>{{time}}<span v-if='isSecond'>秒</span></button>
+				<p class="error-code" v-if='isCodeError'>{{errorCode}}</p>
+			</div>
+			<button :class="canRegister ? 'register': 'isRegister' " @click='register()'>注册</button>
+			<p class='tips'><span class="change" @click='changeAccount()'>账号登录</span><span class="change" @click='fastLogin()'>快速登录</span></p>
 		</div>
-		<div class='code-box'>
-			<i class="iconfont icon-3denglumima i-code"></i>
-			<input type="text" v-model='code' class="code" @blur='blurCode()' placeholder="请输入验证码"/><button class='get-code' @click='getCode()'>{{time}}<span v-if='isSecond'>秒</span></button>
-			<p class="error-code" v-if='isCodeError'>{{errorCode}}</p>
-		</div>
-		<button :class="canRegister ? 'register': 'isRegister' " @click='register()'>注册</button>
-		<p class='tips'><span class="change" @click='changeAccount()'>账号登录</span><span class="change" @click='fastLogin()'>快速登录</span></p>
+		
 	</div>
 </template>
 
@@ -21,32 +24,32 @@
 	} from '../../assets/js/api'
     import appObj from '../../utils/publicPath'
 	export default {
-		name:'register',
+		name: 'register',
 		data () {
 			return {
 				mobile: '',
-				isMobileError: false,   //判断提示信息是否出现
-				errorMobile: '',   //提示内容
+				isMobileError: false, // 判断提示信息是否出现
+				errorMobile: '', // 提示内容
 				code: '',
 				isCodeError: false,
                 errorCode: '',	
-                canCode:true,  //控制获取验证码按钮是否可点击
+                canCode: true, // 控制获取验证码按钮是否可点击
 				time: '获取验证码',
-				isSecond:false,
-				canRegister: false //控制注册按钮是否可点击
+				isSecond: false,
+				canRegister: false // 控制注册按钮是否可点击
 			}
 		},
-		props:['baseRegister'],
-		methods:{
-			blurMobile() {
-				let reg= /^(13[0-9]|14[579]|15[0-3,5-9]|166|17[0135678]|18[0-9]|19[89])\d{8}$/;
+		props: ['baseRegister'],
+		methods: {
+			blurMobile () {
+				let reg= /^(13[0-9]|14[579]|15[0-3,5-9]|166|17[0135678]|18[0-9]|19[89])\d{8}$/
 				if (reg.test(this.mobile)) {
 					this.errorMobile= ''
 					this.isMobileError= false
 					if (this.code) {
 						this.canRegister= true
 					}
-				}else if (!this.mobile) {
+				} else if (!this.mobile) {
 					this.errorMobile= '请输入手机号码'
 					this.isMobileError= true
 					this.canRegister= false
@@ -56,79 +59,77 @@
 					this.canRegister= false
 				}
 			},
-			blurCode() {
-				let reg= /^(13[0-9]|14[579]|15[0-3,5-9]|166|17[0135678]|18[0-9]|19[89])\d{8}$/;
+			blurCode () {
+				let reg= /^(13[0-9]|14[579]|15[0-3,5-9]|166|17[0135678]|18[0-9]|19[89])\d{8}$/
 				if (this.code.length == 4) {
 					this.errorCode= ''
 					this.isCodeError= false
 					if (reg.test(this.mobile)) {
 						this.canRegister= true
 					}
-				}else if(!this.code) {
+				} else if (!this.code) {
 					this.errorCode= '请输入验证码'
 					this.isCodeError= true
 					this.canRegister= false
-				}else {
+				} else {
 					console.log(1111)
 					this.errorCode= '输入的验证码格式不正确'
 					this.isCodeError= true
 					this.canRegister= false
 				}
 			},
-			getCode() {
+			getCode () {
 				if (this.canCode) {
-					let reg= /^(13[0-9]|14[579]|15[0-3,5-9]|166|17[0135678]|18[0-9]|19[89])\d{8}$/;
+					let reg= /^(13[0-9]|14[579]|15[0-3,5-9]|166|17[0135678]|18[0-9]|19[89])\d{8}$/
 					if (!this.mobile) {
 						this.errorMobile= '请输入手机号码'
 						this.isMobileError= true
-						return
 					} else if (!reg.test(this.mobile)) {
 						this.errorMobile= '输入的手机格式不正确'
 						this.isMobileError= true
-						return
 					} else {
 						this.errorMobile= ''
 						this.isMobileError= false
 						this.isSecond= true
 						this.canCode= false
 						this.time= 120
-						var t=120;
-						var timer= setInterval(()=>{
-							t--;
-							this.time= t;
-							if(t <= 0) {
+						var t=120
+						var timer= setInterval(() => {
+							t--
+							this.time= t
+							if (t <= 0) {
 								clearInterval(timer)
 								this.canCode= true
 								this.isSecond= false
 								this.time='获取验证码'
 							}
 						},1000)
-						//截取获取验证码接口
+						// 截取获取验证码接口
 						let params= {
 							mobile: this.mobile,
 							smsCode: 'fastLogin'
 						}
 						getCode(params)
-						.then((res)=> {
+						.then((res) => {
 							console.log(res)
 						})
 					}
 				}
 			},
-			register() {
-				if(this.canRegister) {
-					//调取接口
+			register () {
+				if (this.canRegister) {
+					// 调取接口
 					let userInfo= {
-						mobile:this.mobile,
-						code:this.code
+						mobile: this.mobile,
+						code: this.code
 					}
 					this.baseRegister(userInfo)
 				}
 			},
-			changeAccount() {
+			changeAccount () {
 				this.$router.push({path: `${appObj.path}login`, query: {type: 'account'}})
 			},
-			fastLogin() {
+			fastLogin () {
 				this.$router.push({path: `${appObj.path}login`, query: {type: 'fast'}})
 			}
 		}
@@ -139,118 +140,119 @@
     .register-box {
     	font-size:0;
     	width:100%;
-    	height:5rem;
-    	padding-top:.3rem;
+    	height:6.666667rem;
+    	padding-top:.4rem;
     	background:rgba(255,66,37,0);
-    	.mobile-box {
-    		font-size:0;
-    		position:relative;
-    		margin-bottom:.6rem;
-    		.mobile {
-	    		width:6rem;
-	    		height:.8rem;
-	    		margin-left:.75rem;
-	    		box-shadow: 0 .01rem 0 #666666;
-	    		padding-left:.8rem;
-	    		letter-spacing: .02rem;
-	    	}
-	    	.i-mobile {
-	    		width:.6rem;
-	    		height:.6rem;
-	    		text-align: center;
-	    		line-height: .6rem;
-	    		font-size:.5rem;
-	    		position:absolute;
-	    		bottom:.1rem;
-	    		left:.85rem;
-	    	}
-	    	.error-mobile {
-	    		width:6rem;
-	    		margin-left:.75rem;
-	    		color:#FF0000;
-	    		font-size:.2rem;
-	    		position:absolute;
-	    		left:0;
-	    		top:.85rem;
-	    		overflow: hidden;
-	    		white-space: nowrap;
-	    		text-overflow: ellipsis;
-	    	}
-    	}
-    	.code-box {
-    		font-size:0;
-    		position:relative;
-    		margin-bottom:.6rem;
-    		.code {
-    			width:3.5rem;
-    			height:.8rem;
-    			margin-left:.75rem;
-    			padding-left:.8rem;
-    			box-shadow: 0 .01rem 0 #666666;
-    			letter-spacing: .02rem;
-    		}
-    		.i-code {
-    			width:.6rem;
-	    		height:.6rem;
-	    		text-align: center;
-	    		line-height: .6rem;
-	    		font-size:.5rem;
-	    		position:absolute;
-	    		bottom:.1rem;
-	    		left:.85rem;
-    		}
-    		.get-code {
-    			width:2rem;
-    			height:.8rem;
-    			text-align: center;
-    			line-height:.8rem;
-    			margin-left:.5rem;
-    			box-shadow: 0 .01rem 0 #666666;
-    			border-radius:.05rem;
-    			color:#969896;
-    		}
-    		.error-code {
-    			width:6rem;
-	    		margin-left:.75rem;
-	    		color:#FF0000;
-	    		font-size:.2rem;
-	    		position:absolute;
-	    		left:0;
-	    		top:.85rem;
-	    		overflow: hidden;
-	    		white-space: nowrap;
-	    		text-overflow: ellipsis;
-    		}
-    	}
-    	.isRegister {
-    		width:6rem;
-    		height:.8rem;
-    		margin-left:.75rem;
-    		border-radius:.05rem;
-    		font-size:.36rem;
-    		background:#CCCCCC;
-    		color:#333333;
-    	}
-    	.register {
-    		width:6rem;
-    		height:.8rem;
-    		margin-left:.75rem;
-    		border-radius:.05rem;
-    		font-size:.36rem;
-    		color:#fff;
-    		background:-webkit-linear-gradient(left,#f00,#f0f)
-    	}
-    	.tips {
-    		width:6rem;
-    		margin-left:.75rem;
-    		display: flex;
-    		font-size:.3rem;
-    		margin-top:.3rem;
-    		justify-content: space-between;
-    		color:#333333;
-    		&>span {
-    			height:.5rem;
-    		}
-    	}
+		display: flex;
+		justify-content: center;
+		.content {
+			width:8rem;
+			.mobile-box {
+				font-size:0;
+				position:relative;
+				margin-bottom:.8rem;
+				.mobile {
+					width:8rem;
+					height:1.066667rem;
+					font-size:14px;
+					box-shadow: 0 .01rem 0 #666666;
+					padding-left:1.066667rem;
+					letter-spacing: .026667rem;
+				}
+				.i-mobile {
+					width:1.066667rem;
+					height:1.066667rem;
+					text-align: center;
+					line-height:1.066667rem;
+					font-size:20px;
+					position:absolute;
+					bottom:0;
+					left:0;
+				}
+				.error-mobile {
+					width:8rem;
+					color:#FF0000;
+					font-size:12px;
+					position:absolute;
+					left:0;
+					top:1.133333rem;
+					overflow: hidden;
+					white-space: nowrap;
+					text-overflow: ellipsis;
+				}
+			}
+			.code-box {
+				font-size:0;
+				position:relative;
+				margin-bottom:.8rem;
+				.code {
+					width:4.666667rem;
+					height:1.066667rem;
+					font-size:14px;
+					padding-left:1.066667rem;
+					box-shadow: 0 .01rem 0 #666666;
+					letter-spacing:.026667rem;
+				}
+				.i-code {
+					width:1.066667rem;
+					height:1.066667rem;
+					text-align: center;
+					line-height:1.066667rem;
+					font-size:20px;
+					position:absolute;
+					bottom:0;
+					left:0;
+				}
+				.get-code {
+					width:2.666667rem;
+					height:1.066667rem;
+					text-align: center;
+					line-height:1.066667rem;
+					margin-left:.666667rem;
+					box-shadow: 0 .01rem 0 #666666;
+					border-radius:5px;
+					color:#969896;
+				}
+				.error-code {
+					width:8rem;
+					color:#FF0000;
+					font-size:12px;
+					position:absolute;
+					left:0;
+					top:1.133333rem;
+					overflow: hidden;
+					white-space: nowrap;
+					text-overflow: ellipsis;
+				}
+			}
+			.isRegister {
+				width:8rem;
+				height:1.066667rem;
+				border-radius:5px;
+				font-size:18px;
+				background:#CCCCCC;
+				color:#333333;
+			}
+			.register {
+				width:8rem;
+				height:1.066667rem;
+				border-radius:5px;
+				font-size:18px;
+				color:#fff;
+				background:-webkit-linear-gradient(left,#f00,#f0f)
+			}
+			.tips {
+				width:8rem;
+				display: flex;
+				font-size:14px;
+				margin-top:.4rem;
+				justify-content: space-between;
+				color:#333333;
+				&>span {
+					height:.666667rem;
+				}
+			}
+		}
+    	
     }
 </style>

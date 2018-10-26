@@ -1,23 +1,20 @@
 <template>
-	<div class="result">
-		搜索结果
+	<div class="history">
+		
 	</div>
 </template>
 
 <script>
 	export default {
-		name:'result',
+		name: 'browserhistory',
 		data () {
 			return {
 				
 			}
-		},
-		mounted() {
-			console.log(this.$route.query.content)
 		}
 	}
 </script>
 
 <style lang='scss' scoped>
-
+    
 </style>

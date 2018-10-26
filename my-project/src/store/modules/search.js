@@ -14,7 +14,7 @@ const search= {
     	GetPlaceholder({commit},params) {
     		getDefSearch(params)
     		.then((res)=> {
-//  			console.log(res)
+    			console.log(res)
     			if(res.status=='OK') {
 //  				console.log(res.message.AcitivityTypeName)
     				commit('SET_PLACEHOLDER',res.message.AcitivityTypeName)

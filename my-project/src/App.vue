@@ -12,7 +12,7 @@ export default {
 
 <style>
 #app {
-  max-width: 7.5rem;
+  max-width:750px;
   margin:0 auto;
 }
 </style>

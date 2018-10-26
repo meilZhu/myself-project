@@ -9,7 +9,7 @@
 		name: 'index',
 		data () {
 			return {
-				isNeedLogin:true
+				isNeedLogin: true
 			}
 		},
 

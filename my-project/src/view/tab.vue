@@ -27,7 +27,7 @@
     	max-height: 100%;
         	.content {
     		width:100%;
-    		height:.88rem;
+    		height:1.173333rem;
     		display:flex;
     		box-shadow: 0 -1px 10px #CCCCCC;
     		position:fixed;
@@ -36,7 +36,8 @@
 			z-index:2;
     		.item {
     			flex:1;
-    			font-size:.24rem;
+				text-decoration: none;
+    			font-size:14px;
     			font-weight:500;
     			display: flex;
     			flex-direction: column;
@@ -46,7 +47,7 @@
     				text-align: center;
     			}
     			.iconfont {
-    				font-size:.32rem
+    				font-size:16px
     			}
     		}
     		.active {

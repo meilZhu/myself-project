@@ -8,27 +8,27 @@
 
 <script>
 	export default {
-		name:'baseheader',
+		name: 'baseheader',
 		data () {
 			return {
 	          
 			}
 		},
-		props:['title']
+		props: ['title']
 	}
 </script>
 
 <style lang='scss' scoped>
     .header {
     	width:100%;
-    	height:.8rem;
+    	height:1.066667rem;
         position:relative;
         .go-back,.other {
-        	width:.8rem;
+        	width:1.066667rem;
         	height:100%;
-        	font-size:.4rem;
+        	font-size:20px;
         	text-align:center;
-        	line-height: .8rem;
+        	line-height: 1.066667rem;
         	position:absolute;
         	top:0;
         }
@@ -39,12 +39,11 @@
         	right:0
         }
         .titles {
-        	font-size:.3rem;
-        	width:5.9rem;
+        	font-size:18px;
+        	width:100%;
         	height:100%;
         	text-align: center;
-        	line-height: .8rem;
-        	margin-left:.8rem;
+        	line-height:1.066667rem;
         }
     }
 </style>

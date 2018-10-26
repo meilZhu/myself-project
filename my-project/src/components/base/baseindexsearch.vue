@@ -18,29 +18,29 @@
 	} from '../../assets/js/api'
 	import appObj from '../../utils/publicPath'
 	export default {
-		name:'indexSearch',
+		name: 'indexSearch',
 		data () {
 			return {
-				content:'',
-				placeholder:'nih'
+				content: '',
+				placeholder: 'nih'
 			}
 		},
-		props:['closeDialog', 'showDialog', 'isNeedLogin'],
-		methods:{
-			jumpList() {
-				this.$router.push({path:`${appObj.path}nav/classify`})
+		props: ['closeDialog', 'showDialog', 'isNeedLogin'],
+		methods: {
+			jumpList () {
+				this.$router.push({path: `${appObj.path}nav/classify`})
 			},
-			input() {
-				this.$router.push({path:`${appObj.path}search`})
+			input () {
+				this.$router.push({path: `${appObj.path}search`})
 			},
-			search() {
-				this.$router.push({path:`${appObj.path}searchResult`,query:{content:this.content}})
+			search () {
+				this.$router.push({path: `${appObj.path}searchResult`})
 			},
-			login() {
-				this.$router.push({path:`${appObj.path}login`})
+			login () {
+				this.$router.push({path: `${appObj.path}login`})
 			}
 		},
-		mounted() {
+		mounted () {
 			this.placeholder= this.$store.state.search.placeholder
 		}
 	}
@@ -49,29 +49,31 @@
 <style lang='scss' scoped>
     .basesearch {
     	width:100%;
-    	padding:.14rem 0;
+    	padding:.186667rem 0;
     	background:rgba(255,23,43,.8);
 	    .indexSearch {
 	    	width:100%;
-	    	height:.6rem;
+	    	height:.8rem;
 	    	display:flex;
 	    	justify-content: space-around;
 	    	.list {
 	    		display: inline-block;
-	    		width:.6rem;
-	    		height:.6rem;
-	    		font-size::.54rem;
+	    		width:.8rem;
+	    		height:.8rem;
+	    		font-size:24px;
 	    		color:#fff;
+				text-align: center;
+				line-height:.8rem;
 	    	}
 	    	.search-box {
-	    		width:5.2rem;
+	    		width:6.933333rem;
 	    		height:100%;
-	    		padding-left:1.3rem;
+	    		padding-left:1.733333rem;
 	    		position:relative;
 	    		border-radius:15px;
 	    		background:#fff;
 	    		.logo {
-	    			width::.65rem;
+	    			width:.866667rem;
 	    			height:100%;
 	    			position:absolute;
 	    			top:0;
@@ -79,44 +81,45 @@
 	    			border-top-left-radius:15px;
 	    			border-bottom-left-radius:15px;
 	    			&>img {
-	    				width:.45rem;
-	    				height:.46rem;
+	    				width:.6rem;
+	    				height:.613333rem;
 	    				position:absolute;
-	    				top:.07rem;
-	    				right:.05rem;
+	    				top:.093333rem;
+	    				right:.066667rem;
 	    			}
 	    		}
 	    		.search-btn {
-	    			width:.64rem;
-	    			height:.4rem;
+	    			width:.853333rem;
+	    			height:.533333rem;
 	    			position:absolute;
-	    			top:.1rem;
-	    			left:.65rem;
-	    			border-left:.01rem #969896 solid;
+	    			top:.133333rem;
+	    			left:.866667rem;
+	    			border-left:.013333rem #969896 solid;
 	    			display:flex;
 	    			justify-content: center;
 	    			.iconfont {
-		    			font-size:.4rem;
+		    			font-size:15px;
+						line-height:.533333rem;
 		    		}
 	    		}
 	    		.text {
-	    			width:3.9rem;
+	    			width:5.2rem;
 	    			height:100%;
-	    			line-height: .7rem;
+	    			line-height:.933333rem;
 	    			position:absolute;
 	    			top:0;
-	    			left:1.3rem;
-	    			font-size:.24rem;
+	    			left:1.733333rem;
+	    			font-size:14px;
 	    			color:#404040;
 	    			border-top-right-radius:15px;
 	    			border-bottom-right-radius:15px;
 	    		}
 	    	}
 	    	.login {
-	    		font-size:.28rem;
-	    		width:1rem;
+	    		font-size:15px;
+	    		width:1.333333rem;
 	    		height:100%;
-	    		line-height:.6rem;
+	    		line-height:.8rem;
 	    		text-align: center;
 	    		color:#fff
 	    	}

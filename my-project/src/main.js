@@ -8,6 +8,8 @@ import './assets/js/rem'
 import store from './store'
 import router from './router'
 
+import VueScroller from 'vue-scroller'
+
 import upperFirst from 'lodash/upperFirst'
 import camelCase from 'lodash/camelCase'
 
@@ -33,6 +35,7 @@ requireComponent.keys().forEach(fileName => {
 	)
 })
 
+Vue.use(VueScroller)
 Vue.config.productionTip = false
 
 /* eslint-disable no-new */
