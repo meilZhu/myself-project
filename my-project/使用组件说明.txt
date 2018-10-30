@@ -22,15 +22,26 @@ basesearchhistory 组件使用说明   （搜索历史、热门搜索组件）
      该组件主要用来保存搜索历史/热门搜索等功能 / 使用该组件组要要传递 searchTitle(标题)、isShowRemove（是否显示删除按钮）、searchContent（搜索的内容）、【以及closeDialog、showDialog、type（传递显示隐藏的信息）】
      以及他可以实现历史在搜索（该功能要具体自己写逻辑）
      
-baserelatedsearch   （相关搜索组件）
+baserelatedsearch  组件使用说明 （相关搜索组件）
      该组件主要是在搜索输入框输入内容是根据提示相关搜索内容的提示组件，这里需要通过 bus 来实现兄弟组件之间的属性传递；以及接口的调取
 
-basejumpicon  (头部icon点击跳转组件)
+basejumpicon  组件使用说明  (头部icon点击跳转组件)
      该组件主要是实现页面右上角点击出现的 icon，可以调转到自己指定的页面 /这里面有一个插槽slot 用于控制该组件出现以后让他消失的作用 ，class名：interface（中间层）、点击事件自己决定
 
 basetips 组件的使用说明 （纯文本提示，错误、警告、正确提示）
       该组件主要是用来提示用、 若是纯文本提示：只需要传递 tipsType （error/warning/right/tips）、tipsContent（提示内容）两个属性 ； 若是操作提示框：需要传递 tipsType、tipsContent、needCancelBtn （是否需要取消按钮）
       cancelFn （取消按钮事件方法）、sureFn （确定按钮事件方法） 这五个属性  【若needCancelBtn 为 false ，你们cancelFn 方法也就没有必要传递了】
 
-basegoodsshow 组件使用说明
+basegoodsleftlist 、basegoodsrightlist 组件使用说明  （商品列表页面左侧栏、右侧栏；两者联合使用）
+      该两个组件主要是使用在商品列表页；具体的数据可以直接在该两个组件中使用，或调取接口；两者之间的数据传递可以用 bus 来实现传递
+
+baseswiperslider  组件的使用说明  （轮播图组件）
+      该组件主要是用来实现页面中图片轮播的作用，主要需要传递 height(高度、不传默认为5rem)、duration（每个图面轮播耗时，默认500）、interval (多久轮播一次、默认值 2500)、autoPlay (是否自动轮播、默认true)  
+      showIndicator （是否显示轮播的那个点、默认true） 这五个属性 ；至于轮播的图片需要通过 slot 插槽实现 ；这里我们需要注意的是，插槽内的轮播的图片的父元素的类名一定需要是 ‘ slider ’
+      这样就能实现我们的图片轮播了，至于一些样式的修改可以在组件内修改
+
+basecircleicon  组件使用说明  （首页中圆形图标 + 名称组件）
+      该组件主要是在首页中形成一个图标分类的组件，可以跳转到相应的页面去 这里用的是插槽；注意这里我们直接在该组件里面循环自己想要的东西，但需要注意的是循环的元素需要加一个类名 ‘ icon-list ’
+
+
  
