@@ -4,12 +4,13 @@ const Tab = () => import(/* webpackChunkName:'tab' */'@/view/tab')
 const Index = () => import(/* webpackChunkName:'index' */'@/view/index')
 const Mine = () => import(/* webpackChunkName:'mine' */'@/view/mine')
 const Classify = () => import(/* webpackChunkName:'classify' */'@/view/classify')
-const Cart = () => import(/* webpackChunkName:'cart' */'@/view/cart')
+const Cart = () => import(/* webpackChunkName:'cart' */'@/view/cart/cart')
 const Login = () => import(/* webpackChunkName:'loginRegister' */'@/view/login/login')
 const Register = () => import(/* webpackChunkName:'loginRegister' */'@/view/login/register')
 const Search = () => import(/* webpackChunkName:'search' */'@/view/search/search')
 const SearchResult = () => import(/* webpackChunkName:'search' */'@/view/search/searchResult')
 const BrowserHistory = () => import(/* webpackChunkName:'search' */'@/view/search/browserhistory')
+const GoodsDetail = () => import(/* webpackChunkName:'cart' */'@/view/cart/goodsDetail')
 
 let publicPath
 
@@ -64,6 +65,10 @@ export default new Router({
 	  	path: `/${publicPath}browserHistory`,
 	  	name: 'browserhistory',
 	  	component: BrowserHistory
+	  },{
+	  	path:`/${publicPath}goodsDetail`,
+	  	name: 'goodsDetail',
+	  	component:GoodsDetail
 	  },{
 	  	path: '*',
 	    redirect: {

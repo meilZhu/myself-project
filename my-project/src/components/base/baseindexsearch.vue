@@ -3,7 +3,7 @@
 		<div class="indexSearch">
 			<i class="list iconfont icon-liebiao21" @click='jumpList()'></i>
 			<form action="" class='search-box'>
-				<div class="logo"><img src="../../assets/img/logo.png" alt="" /></div>
+				<div class="logo"><img src="../../assets/img/logo.png" alt="" :data_url="logoUrl" /></div>
 				<input type="text" class="text" v-model='content' @click='input()' :placeholder='placeholder'/>
 				<div class='search-btn'><i class="iconfont icon-sousuo" @click='search()'></i></div>
 			</form>
@@ -22,7 +22,8 @@
 		data () {
 			return {
 				content: '',
-				placeholder: 'nih'
+				placeholder: 'nih',
+				logoUrl: 'http://m1.wx.01home.com/img/headImg.3a55c565.png'
 			}
 		},
 		props: ['closeDialog', 'showDialog', 'isNeedLogin'],

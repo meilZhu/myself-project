@@ -196,10 +196,12 @@
 	        	width: 100%;
 		        -ms-flex-negative: 0;
 		        flex-shrink: 0;
-		        z-index: 10;
+		        z-index: 1;
 		        min-height: 100px;
 		        img {
-		        	display:block
+		        	display:block;
+                    width:100%;
+                    height:100%;
 		        }
 	        }
     	}

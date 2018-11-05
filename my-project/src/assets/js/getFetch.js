@@ -2,7 +2,7 @@ const axios = require('axios')
 const qs = require('qs')
 var baseURL=''
 
-if(process.env.NODE_ENV != 'development') {
+if (process.env.NODE_ENV != 'development') {
 	baseURL = process.env.API_ROOT
 }
 

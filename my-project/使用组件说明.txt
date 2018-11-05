@@ -8,7 +8,8 @@ baseSearch 组件使用说明： （普通的搜索组件）
   
 baseHeader 组件使用说明： （头部组件）
      该组件主要是实现在某一页面头部增减一个头部，展现：left、center、right 三部分；左边class名是go-back， slot名 goBack ；中间为title，将其传递过去；右边的类名是other、在左右两边的其他操作在调用该组件的页面直接操作。
- 
+     同时也需要传递一个needBorder（默认false）属性来决定该头部是否需要下边框
+      
 baseFastLogin 组件使用说明： （快速登录组件）
      该组件主要是快速登录使用，里面的校验已经全部做好，使用时主要传递closeDialog、showDialog、fastLogin（需要传参） 三个方法
  
@@ -43,5 +44,10 @@ baseswiperslider  组件的使用说明  （轮播图组件）
 basecircleicon  组件使用说明  （首页中圆形图标 + 名称组件）
       该组件主要是在首页中形成一个图标分类的组件，可以跳转到相应的页面去 这里用的是插槽；注意这里我们直接在该组件里面循环自己想要的东西，但需要注意的是循环的元素需要加一个类名 ‘ icon-list ’
 
-
+basewordrotation  组件使用说明  (文字信息自下而上的自动轮播的组件)
+      该组件主要是用来实现文字轮播，这个需要传递 imgSrc（左边的logo图、必传）、more（右边button按钮的文字）、interval（多久；轮播一次，默认3000）、duration（轮播一条的滑动时间，默认350） 这个四个属性
+      以及接收一个@moreInfo 这个方法；同时自定义你要轮播的内容；但需要注意的是：如果文字右边还是文字，轮播的的文字的类名为’rotation-list-text‘ _ 他的左侧子元素必须是span ，如果左边是图片，类名为‘rotation-list-img’
  
+basebuybutton  组件使用说明  （商品详情页中最下边的购买按钮组件）
+      该组件主要是用来供商品详情页使用，它需要传递buyText (购买按钮是的文字，默认：立即购买)、buyNum (购物车中商品的数量【它可以控制红色提示是否显示】：默认：0)这两个属性； 同时他也提供了 @joinCart（加入购物车）、@buyNow（立即购买）两个方法
+      以及它也可以 使用自定义的内容（运用slot 插槽），不过这里插槽的样式比较固定，li标签（类名：buy-list、buy-change）里面有个a标签，a标签里面有个i标签（类名：btn-icon）和span标签（类名：btn-text）。具体的可以参考组件自生

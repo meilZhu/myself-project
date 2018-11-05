@@ -4,12 +4,12 @@ axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded
 axios.defaults.baseURL = process.env.API_ROOT
 
 axios.interceptors.request.use(function (config) {
-    return config;
+    return config
   }, function (error) {
-    return Promise.reject(error);
-});
+    return Promise.reject(error)
+})
 
-function checkStatus(res,resolve,reject) {
+function checkStatus (res,resolve,reject) {
   if (res.status == '200') {
     resolve(res.data)
   } else {
@@ -21,7 +21,7 @@ function checkStatus(res,resolve,reject) {
 
 export default function (method, url, params) {
   return new Promise((resolve, reject) => {
-    if(method == 'get') {
+    if (method == 'get') {
       axios.get(url, {params})
         .then(response => {
           checkStatus(response,resolve, reject)

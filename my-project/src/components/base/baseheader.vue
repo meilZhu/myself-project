@@ -1,5 +1,5 @@
 <template>
-	<div class="header">
+	<div class="header" ref='header'>
 		<slot name='left-operate'></slot>
 		<h1 class="titles">{{title}}</h1>
 		<slot></slot>
@@ -14,7 +14,20 @@
 	          
 			}
 		},
-		props: ['title']
+		props: {
+			title: {
+				type: String
+			},
+			needBorder: {
+				type: Boolean,
+				default: false
+			}
+		},
+		mounted () {
+			if (this.needBorder) {
+				this.$refs.header.style.borderBottom= '.01rem #e2e2e2 solid'
+			}
+		}
 	}
 </script>
 

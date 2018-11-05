@@ -27,6 +27,7 @@
     	max-height: 100%;
         	.content {
     		width:100%;
+			background:#fff;
     		height:1.173333rem;
     		display:flex;
     		box-shadow: 0 -1px 10px #CCCCCC;
