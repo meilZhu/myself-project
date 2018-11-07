@@ -16,7 +16,7 @@
 		methods: {
 			goScrollTop () {
                 let timer= setInterval(() => {
-					console.log('定时循环回到顶部')
+					// console.log('定时循环回到顶部')
 					let t =document.documentElement.scrollTop || document.body.scrollTop
 					let speed = t/4
 					if (document.body.scrollTop != 0) {

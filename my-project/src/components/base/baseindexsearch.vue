@@ -17,16 +17,21 @@
 		
 	} from '../../assets/js/api'
 	import appObj from '../../utils/publicPath'
+	import {mapState} from 'vuex'
 	export default {
 		name: 'indexSearch',
 		data () {
 			return {
 				content: '',
-				placeholder: 'nih',
 				logoUrl: 'http://m1.wx.01home.com/img/headImg.3a55c565.png'
 			}
 		},
 		props: ['closeDialog', 'showDialog', 'isNeedLogin'],
+		computed: mapState({
+            placeholder (state) {
+			    return state.search.placeholder	
+			}
+		}),
 		methods: {
 			jumpList () {
 				this.$router.push({path: `${appObj.path}nav/classify`})
@@ -42,7 +47,7 @@
 			}
 		},
 		mounted () {
-			this.placeholder= this.$store.state.search.placeholder
+		    
 		}
 	}
 </script>

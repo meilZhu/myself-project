@@ -21,13 +21,13 @@
                 <span>{{item.tips}}</span>{{item.text}}
 			</li>
 		</basewordrotation>
-		<ul class="goods-contain">
+		<basegoodsportraitexhibition>
 			<li class="goods-list" v-for='(item, index) in goodsData' :key='index' @click='jumpDetail(item.goodsId)'>
-				<img src="../assets/img/logo.png" alt="" :data_url='item.goodsSrc'>
+				<img src="../assets/img/logo.png" alt="" class='goods-img' :data_url='item.goodsSrc'>
 				<p class="goods-name">{{item.goodsName}}</p>
 				<p class="goods-price">￥ {{item.goodsPrice}}</p>
 			</li>
-		</ul>
+		</basegoodsportraitexhibition>
 		<basescrolltop class='scroll' v-show='isScrollTop' :closeDialog='closeDialog' :showDialog='showDialog'></basescrolltop>
 	</div>
 </template>
@@ -108,13 +108,18 @@
 		},
 		methods: {
             scroll () {
+				let _this=this
 				window.onscroll =function () {
 					lazyLoadImg()
 					let t = document.documentElement.scrollTop || document.body.scrollTop
 					let h = document.documentElement.clientHeight || document.body.clientHeight
 					if (t >= h) {
-						console.log('出现')
-						this.showDialog('scrollTop')
+						// console.log('出现')
+						_this.showDialog('scrollTop')
+					}
+					if (t < 200) {
+						// console.log('xiaoshi')
+						_this.closeDialog('scrollTop')
 					}
 				}
 			},
@@ -172,36 +177,6 @@
 				&>img {
 					width:100%;
 					height:100%;
-				}
-			}
-		}
-		.goods-contain {
-			width:100%;
-			padding:.4rem .2rem;
-			display: flex;
-			flex-wrap: wrap;
-			.goods-list {
-				width:4.733333rem;
-				padding:.2rem;
-				&>img {
-					width:100%;
-					height:4.333333rem;
-				}
-                .goods-name {
-					width:100%;
-					font-size:14px;
-					padding:.2rem ;
-					height:.8rem;
-					text-align:center;
-					line-height:.4rem;
-					text-overflow: ellipsis;
-					overflow: hidden;
-				    white-space: nowrap;
-				}
-				.goods-price {
-					width:100%;
-					font-size:14px;
-					color:#f00;
 				}
 			}
 		}

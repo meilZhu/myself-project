@@ -50,4 +50,25 @@ basewordrotation  组件使用说明  (文字信息自下而上的自动轮播�
  
 basebuybutton  组件使用说明  （商品详情页中最下边的购买按钮组件）
       该组件主要是用来供商品详情页使用，它需要传递buyText (购买按钮是的文字，默认：立即购买)、buyNum (购物车中商品的数量【它可以控制红色提示是否显示】：默认：0)这两个属性； 同时他也提供了 @joinCart（加入购物车）、@buyNow（立即购买）两个方法
-      以及它也可以 使用自定义的内容（运用slot 插槽），不过这里插槽的样式比较固定，li标签（类名：buy-list、buy-change）里面有个a标签，a标签里面有个i标签（类名：btn-icon）和span标签（类名：btn-text）。具体的可以参考组件自生
+      以及它也可以 使用自定义的内容（运用slot 插槽），不过这里插槽的样式比较固定，li标签（类名：buy-list、buy-change）里面有个a标签，a标签里面有个i标签（类名：btn-icon）和span标签（类名：btn-text）。具体的可以参考组件自身
+
+basescrolltop  组件使用说明   (置顶按钮组件)
+      该组件主要是用来使页面回到顶部的功能，它所需传递的只有closeDialog、showDialog 两个方法（方法的参数为指定的 scrolltop） 至于它在手动滚动时何时出现、何时消失，由他的父组件决定
+
+basetitletips   组件使用说明  （某一部分头部的提示组件/ 样式大略为横线+点+文字+点+横线）
+      该组件主要只用来在某一部分开头，提示该部分主要的作用；该组件主要需要传递 tipsTitle（默认为：限时抢购）这一个属性
+
+basegoodstransverseexhibition   组件使用说明 （商品横向上的展示【主要样式只有图片、名称、价格】，如有需要可以在进行修改）
+      该组件主要是用来商品的横向展示，展示部分用slot插槽实现；这里主要的类名有 goods-list、goods-img、goods-name、goods-price
+
+basegoodsportraitexhibition  组件使用说明  （商品纵向上的展示【主要样式只有图片、名称、价格】，如有需要可以在进行修改）
+      该组件主要是用来商品的纵向展示，展示部分用slot插槽实现；这里主要的类名有 goods-list、goods-img、goods-name、goods-price
+
+basebalancebutton   组件使用说明  （用于商品结算的按钮组件）
+      该组件主要用于购物车底部的结算；它是通过它的兄弟组件控制状态来控制它状态的改变，是结算；还是相关操作
+
+baseemptycart   组件使用说明  （当购物车为空时的，购物车上方的样式展示）
+      该组件主要是当购物车为空时，购物车上方的样式展示，一个空的购物车 + 一个商品展示列表
+
+basecommoditycart   组件使用说明  （当购物车有商品时的，购物车商品的展示与操作）
+

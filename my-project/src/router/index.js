@@ -11,6 +11,8 @@ const Search = () => import(/* webpackChunkName:'search' */'@/view/search/search
 const SearchResult = () => import(/* webpackChunkName:'search' */'@/view/search/searchResult')
 const BrowserHistory = () => import(/* webpackChunkName:'search' */'@/view/search/browserhistory')
 const GoodsDetail = () => import(/* webpackChunkName:'cart' */'@/view/cart/goodsDetail')
+const ConfirmOrder = () => import(/* webpackChunkName:'order' */'@/view/order/confirmOrder')
+const SecondKill = () => import(/* webpackChunkName:'order */'@/view/order/secKill')
 
 let publicPath
 
@@ -24,7 +26,7 @@ Vue.use(Router)
 export default new Router({
 	linkActiveClass: 'active',
 	mode: 'history',
-  routes: [{
+    routes: [{
 	  	path: `/${publicPath}nav`,
 	  	name: 'tab',
 	  	component: Tab,
@@ -37,45 +39,52 @@ export default new Router({
 	    	name: 'classify',
 	    	component: Classify
 	    }]
-	  },{
-	  	path: `/${publicPath}cart`,
-	  	name: 'cart',
-	  	component: Cart
-	  },{
-	  	path: `/${publicPath}mine`,
-	  	name: 'mine',
-	  	component: Mine
-	  },{
-	  	path: `/${publicPath}login`,
-	  	name: 'login',
-	  	component: Login
-	  },{
-	  	path: `/${publicPath}register`,
-	  	name: 'register',
-	  	component: Register
-	  },{
-	  	path: `/${publicPath}search`,
-	  	name: 'search',
-	  	component: Search
-	  },{
-	  	path: `/${publicPath}searchResult`,
-	  	name: 'result',
-	  	component: SearchResult
-	  },{
-	  	path: `/${publicPath}browserHistory`,
-	  	name: 'browserhistory',
-	  	component: BrowserHistory
-	  },{
-	  	path:`/${publicPath}goodsDetail`,
-	  	name: 'goodsDetail',
-	  	component:GoodsDetail
-	  },{
-	  	path: '*',
-	    redirect: {
-	    	name: 'index',
-	    	component: Index
+	  	},{
+			path: `/${publicPath}cart`,
+			name: 'cart',
+			component: Cart
+	 	 },{
+			path: `/${publicPath}mine`,
+			name: 'mine',
+			component: Mine
+	 	 },{
+			path: `/${publicPath}login`,
+			name: 'login',
+			component: Login
+	 	 },{
+			path: `/${publicPath}register`,
+			name: 'register',
+			component: Register
+	  	},{
+			path: `/${publicPath}search`,
+			name: 'search',
+			component: Search
+	    },{
+			path: `/${publicPath}searchResult`,
+			name: 'result',
+			component: SearchResult
+	    },{
+			path: `/${publicPath}browserHistory`,
+			name: 'browserhistory',
+			component: BrowserHistory
+	 	},{
+			path: `/${publicPath}goodsDetail`,
+			name: 'goodsDetail',
+			component: GoodsDetail
+	    },{
+			path: `/${publicPath}confirmOrder`,
+			name: 'confirmorder',
+			component: ConfirmOrder
+	    },{
+			path: `/${publicPath}secKill`,
+			name: 'seckill',
+			component: SecondKill
+		},{
+			path: '*',
+			redirect: {
+				name: 'index',
+				component: Index
+			}
 	    }
-	  }
-   
-  ]
+    ]
 })

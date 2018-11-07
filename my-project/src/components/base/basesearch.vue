@@ -14,16 +14,21 @@
 <script>
 	import appObj from '../../utils/publicPath'
 	import bus from '../../utils/bus'
+	import {mapState} from 'vuex'
 	export default {
 		name: 'search',
 		data () {
 			return {
 				text: '',
-				isRemove: false, // 用于判断输入框中的删除按钮是否展示，在聚焦、失焦、输入时生效
-				placeholder: '当input没有输入时的默认搜索值'
+				isRemove: false // 用于判断输入框中的删除按钮是否展示，在聚焦、失焦、输入时生效
 			}
 		},
 		props: ['isJump','closeDialog','showDialog'],
+		computed: mapState({
+            placeholder (state) {
+				return state.search.placeholder
+			}
+		}),
 		methods: {
 			focusText () {
 				if (this.text) {
@@ -69,7 +74,7 @@
 		},
 		mounted () {
 			this.getSearchWord()
-			this.placeholder= this.$store.state.search.placeholder
+			console.log(this.placeholder)
 		}
 	}
 </script>

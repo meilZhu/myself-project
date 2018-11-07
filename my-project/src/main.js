@@ -5,6 +5,7 @@ import App from './App'
 import './assets/css/base.scss'
 import './assets/css/styl.scss'
 import './assets/js/rem'
+import './assets/js/scrollTop'
 import store from './store'
 import router from './router'
 
@@ -25,7 +26,6 @@ requireComponent.keys().forEach(fileName => {
 			fileName.replace(/^\.\/(.*)\.\w+$/, '$1')
 		)
 	)
-//	console.log(componentName)
 	Vue.component( // 全局注册组件
 		componentName,  
 		// 如果这个组件选项是通过 `export default` 导出的，

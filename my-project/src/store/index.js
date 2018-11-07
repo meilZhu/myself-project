@@ -10,7 +10,7 @@ const store = new Vuex.Store({
 	state: {
 		
 	},
-	modules:{
+	modules: {
 		user,
 		search
 	},
