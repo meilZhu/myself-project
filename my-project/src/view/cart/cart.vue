@@ -1,7 +1,7 @@
 <template>
 	<div class="cart">
 		<basetips v-if='isTips' :cancelFn='cancelFn' :sureFn='sureFn' :tipsType='tipsType' :tipsContent='tipsContent' :needCancelBtn='needCancelBtn'></basetips>
-		<baseheader :title='title' :needBorder='needBorder'>
+		<baseheader :title='title' :needBorder='true'>
 		    <i class="iconfont icon-xiangzuo7 go-back" slot='left-operate' @click='goback()'></i>
 		    <i class="iconfont icon-more other" @click='showList()'></i>
 		</baseheader>
@@ -9,7 +9,16 @@
 		    <div class="interface" @click='hideList()'></div>
 		</basejumpicon>
 		<basebalancebutton class='balance-btn' v-if='isBalanceBtn'></basebalancebutton>
-        <baseemptycart  v-if='!isBalanceBtn'></baseemptycart>
+        <baseemptycart  v-if='!isBalanceBtn'>
+		    <basetitletips></basetitletips>
+			<basegoodstransverseexhibition>
+				<li class="goods-list" v-for='(item, index) in goodsData' :key='index' @click='jumpSeckill(item.goodsId)'>
+					<img src="../../assets/img/logo.png" alt="" class="goods-img" :data_url='item.goodsImg'>
+					<p class="goods-name">{{item.goodsName}}</p>
+					<p class="goods-price">￥ {{item.goodsPrice}}</p>
+				</li>
+			</basegoodstransverseexhibition>
+		</baseemptycart>
 		<basecommoditycart v-if='isBalanceBtn'></basecommoditycart>
 	    <basetitletips :tipsTitle="'你可能喜欢的'"></basetitletips>
 		<basegoodsportraitexhibition>
@@ -35,19 +44,30 @@
 				isBalanceBtn: true,
 				isScrollTop: false,
 				title: '购物车',
-				needBorder: true,
 				tipsType: 'right',
 				tipsContent: '提示框提示框提示框提示框提示框提示框提示框提示框',
 				needCancelBtn: true,
 				isJumpIcon: false,
-				relatedData: goods.goodsList
+				relatedData: goods.goodsList,
+				goodsData: goods.goodsSecond
 			}
+		},
+		created () {
+			this.createNum()
 		},
 		mounted () {
 			lazyLoadImg()
 			this.scroll()
 		},
 		methods: {
+			createNum () {
+				let num= Math.random()
+				if (num >= 0.5) {
+					this.isBalanceBtn=true
+				} else {
+					this.isBalanceBtn=false
+				}
+			},
 			scroll () {
 				let _this=this
 				window.onscroll= function () {
@@ -66,6 +86,9 @@
 			},
 			jumpDetail (id) {
                 this.$router.push({path: `${appObj.path}goodsDetail`,query: {goodsId: id}})
+			},
+			jumpSeckill (id) {
+                this.$router.push({path: `${appObj.path}secKill`,query: {goodsId: id}})
 			},
 			closeDialog (hideType,...showType) {
                 switch (hideType) {

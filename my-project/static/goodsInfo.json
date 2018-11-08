@@ -322,5 +322,30 @@
 		"goodsName":"九洲鹿 枕芯家纺 羽丝绒枕头酒店舒适饱满枕芯 AB版厚实柔软压不塌学生枕",
 		"goodsPrice":"24.9",
 		"goodsId":"29"
+	}],
+	"goodsCart": [{
+		"goodsImg":"//img14.360buyimg.com/n7/jfs/t22111/358/1127471486/465558/d61b128b/5b20962cNec05fa2f.jpg!q70.dpg",
+		"goodsName":"九洲鹿 枕芯家纺 羽丝绒枕头酒店舒适饱满枕芯 AB版厚实柔软压不塌学生枕",
+		"goodsBrand":"九洲鹿",
+		"goodsPrice":"24.9",
+		"goodsNumber":2,
+		"goodsId":"29",
+		"goodsSelected": false
+	},{
+		"goodsImg":"//img14.360buyimg.com/n7/jfs/t15127/174/1133107417/442331/68159363/5a4663a9N17477da8.jpg!q70.dpg",
+		"goodsName":"绣花餐桌布艺椅子套罩椅套椅垫套装家用餐椅垫套装茶几布简约现代 绿色 清香 1椅垫+1靠背(单件)",
+		"goodsBrand":"郝晶洁",
+		"goodsNumber":4,
+		"goodsPrice":"54",
+		"goodsId":"28",
+		"goodsSelected": false
+	},{
+		"goodsImg":"//img14.360buyimg.com/n7/jfs/t1195/295/245312366/355074/a57c4cc4/550f7341Ndb699a8d.jpg!q70.dpg",
+		"goodsName":"淘谷家居 A-011树叶素色窗纱 阳台飘窗客卧室定制 打孔式 宽2m*高定制留言",
+		"goodsBrand":"淘谷家居",
+		"goodsNumber": 1,
+		"goodsPrice":"152",
+		"goodsId":"25",
+		"goodsSelected": false
 	}]
 }

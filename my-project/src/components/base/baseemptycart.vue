@@ -4,40 +4,29 @@
 			<img src="../../assets/img/cart.png" alt="" class="cart-img" :data_url='cart'>
 			<p class="empty-cart-text">购物车空空如也，去逛逛吧~~</p>
 		</div>
-		<basetitletips></basetitletips>
+		<!-- <basetitletips></basetitletips>
 		<basegoodstransverseexhibition>
 		    <li class="goods-list" v-for='(item, index) in goodsData' :key='index' @click='jumpSeckill(item.goodsId)'>
                 <img src="../../assets/img/logo.png" alt="" class="goods-img" :data_url='item.goodsImg'>
 				<p class="goods-name">{{item.goodsName}}</p>
 				<p class="goods-price">￥ {{item.goodsPrice}}</p>
 			</li>
-		</basegoodstransverseexhibition>
+		</basegoodstransverseexhibition> -->
+		<slot></slot>
 	</div>
 </template>
 
 <script>
     import cartImg from '../../assets/img/cart.png'
-	import goods from '../../../static/goodsInfo'
-	import appObj from '../../utils/publicPath'
 	export default {
 		name: 'emptycart',
 		data () {
 			return {
-				goodsData: goods.goodsSecond,
 				cart: cartImg
 			}
 		},
-		props: {
-            tipsText: {
-				type: String,
-				default: '限时抢购'
-			}
-		},
 		methods: {
-			jumpSeckill (val) {
-				// console.log(val)
-                this.$router.push({path: `${appObj.path}secKill`})
-			}
+			
 		}
 	}
 </script>

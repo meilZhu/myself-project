@@ -9,7 +9,7 @@ const lazyLoadImg = () => {
 		// console.log(t)
 		var inH= dom.offsetHeight // 获取图片元素滋生的高度
 		// console.log(inH)
-		if ((s+h) >= (t+inH+88)) { // 判断滚动距离加浏览器高度  是否大于 图片元素自身高度加它到文档顶部的距离
+		if ((s+h) >= (t+inH)) { // 判断滚动距离加浏览器高度  是否大于 图片元素自身高度加它到文档顶部的距离
             var url = dom.getAttribute('data_url') // 设置图片的src属性
             dom.src= url
 		}
