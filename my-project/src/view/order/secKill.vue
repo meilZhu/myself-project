@@ -11,6 +11,7 @@
             <li :class="index == btnIndex ?'kill-btn-active' : 'kill-btn'" v-for='(item, index) in btnData' :key='index' @click='changeKill(index)'><span>{{item.time}}</span><em>{{item.desc}}</em></li>
 		</ul>
 		<div class="goods-contain" ref='goodsContain'>
+			<h1 class="goods-title"><span>{{killTitle}}</span><p><i>{{hour}}</i><i>{{minute}}</i><i>{{second}}</i></p></h1>
             <ul class="goods-content">
 				<li class="goods-list" v-for='(item, index) in goodsData' :key='index' @click='getDetail(item.goodsId)'>
 					<img src="../../assets/img/logo.png" alt="" :data_url='item.goodsImg' class="goods-img">
@@ -30,11 +31,16 @@
 <script>
 	import appObj from '../../utils/publicPath' 
 	import goods from '../../../static/goodsInfo'
+	import lazyLoadImg from '../../utils/lazyLoading'
 	export default {
 		name: 'seckill',
 		data () {
 			return {
 				isJumpIcon: false,
+				killTitle: '抢购中 先下单先的哦',
+				hour: '08',
+				minute: '34',
+				second: '34',
 				btnData: [{
 					time: '08:00',
 					desc: '已结束'
@@ -57,6 +63,7 @@
 			}
 		},
 		mounted () {
+			lazyLoadImg()
             this.scroll()
 		},
 		methods: {
@@ -78,6 +85,7 @@
 				let h= dom.offsetTop
 				let content = this.$refs.goodsContain
                 window.onscroll=function () {
+					lazyLoadImg()
 					let t= document.documentElement.scrollTop || document.body.scrollTop
 					if (t >= h) {
 						content.style.marginTop= dom.offsetHeight +'px'
@@ -155,7 +163,12 @@
 			}
 		}
 		.goods-contain {
-			height:2000px;
+			width:100%;
+			.goods-title {
+				width:100%;
+				padding:0 .25rem;
+				height:1.066667rem;
+			}
 		}
 	}
 </style>

@@ -118,10 +118,16 @@
 			font-weight:600;
 		}
 		.join-cart {
-            background:-webkit-linear-gradient(left,#c452e9,#a218e9)
+			background:-webkit-linear-gradient(left,#c452e9,#a218e9);
+			background:-moz-linear-gradient(right,#c452e9,#a218e9);
+			background:-o-linear-gradient(right,#c452e9,#a218e9);
+			background:linear-gradient(to right,#c452e9,#a218e9)
 		}
 		.buy-now {
-			background:-webkit-linear-gradient(left,#fe5771,#f00)
+			background:-webkit-linear-gradient(left,#fe5771,#f00);
+			background:-moz-linear-gradient(right,#fe5771,#f00);
+			background:-o-linear-gradient(right,#fe5771,#f00);
+			background:linear-gradient(to right,#fe5771,#f00)
 		}
 	}
 </style>
