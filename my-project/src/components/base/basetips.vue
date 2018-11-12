@@ -82,8 +82,8 @@
 			.tips-text {
 				width:100%;
 				padding:.4rem .666667rem .666667rem;
-				font-size:13px;
-				text-indent: 28px;
+				font-size:14px;
+				text-align:center;
 				line-height:24px;
 			}
 			.tips-btn {
